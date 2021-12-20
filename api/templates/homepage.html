@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <body style = "background-color: powderblue;"></body>
+    <h1>  <center>Customer REST API Web Service</center> </h1>
+</head>
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<table style="width:70%" align="center">
+  <tr style="text-align:center">
+      <td><b>HTTP Methods</b></center></td>
+      <td><b>URI</b></td>
+      <td><b>Actions</b></td>
+  </tr>
+  <tr>
+      <td>GET</td>
+      <td>http://[hostname]/customers</td>
+      <td>Retrieve list of customers</td>
+  </tr>
+    <tr>
+        <td>GET</td>
+        <td>http://[hostname]/customers/[cust_id]</td>
+        <td>Retrieve a customer</td>
+  </tr>
+    <tr>
+        <td>POST</td>
+        <td>http://[hostname]/customers</td>
+        <td>Create a new customer</td>
+  </tr>
+    <tr>
+        <td>PUT or PATCH</td>
+        <td>http://[hostname]/customers/[cust_id]</td>
+        <td>Update an existing customer</td>
+  </tr>
+    <tr>
+        <td>DELETE</td>
+        <td>http://[hostname]/customers/[cust_id]</td>
+        <td>Delete a customer</td>
+  </tr>
+</table>
+</html>
