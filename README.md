@@ -1,4 +1,4 @@
-# Sample React App
+# Assignment 2 (React + Flask)
 
 ## Dependencies
 - Node.js (https://nodejs.org/en/download/)
