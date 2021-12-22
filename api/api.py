@@ -114,7 +114,7 @@ def update_customer(cust_id):
     customer = Customer.query.get(cust_id)
     if customer:
         data = json.loads(request.get_data())
-        if 'name' in data.keys() and not data.get('name'):
+        if 'name' in data.keys() and not data['name']:
             return {'error': 'Name is a required field'}, 404
         customer_columns = Customer.__table__.columns.keys()
         for key, value in data.items():

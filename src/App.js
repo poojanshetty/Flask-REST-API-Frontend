@@ -48,84 +48,87 @@ function App() {
     <div className="App">
       <div className="containers">
       </div>
-        <MaterialTable
-          title={<h1 id='mt-title-h1'> Customers Data </h1>}
-          data={customerData.data}
-          columns={[
-            { title: 'Id', field: 'id', type: 'numeric', editable: 'never' },
-            { title: 'Name', field: 'name' },
-            { title: 'Birthdate', field: 'birthdate' },
-            { title: 'Sex', field: 'sex' },
-            { title: 'Address', field: 'address' },
-            { title: 'Residence', field: 'residence' },
-            { title: 'Phone', field: 'phone_number' },
-            { title: 'Mail', field: 'mail' },
-            { title: 'SSN', field: 'ssn' },
-            { title: 'Job', field: 'job' },
-            { title: 'Company', field: 'company' },
-          ]}
-          editable={{
-            onRowAdd: newData =>
-              new Promise((resolve, reject) => {
-                setTimeout(() => {
-                  console.log(newData);
-                  fetch(
-                    `/customers`,
-                     {
-                       method: 'POST',
-                       body: JSON.stringify(newData)
-                     }
-                  );
-                  window.location.reload(false);
+      <MaterialTable
+        title={<h1 id='mt-title-h1'> Customers Data </h1>}
+        data={customerData.data}
+        columns={[
+          { title: 'Id', field: 'id', type: 'numeric', editable: 'never' },
+          { title: 'Name', field: 'name' },
+          { title: 'Birthdate', field: 'birthdate' },
+          { title: 'Sex', field: 'sex' },
+          { title: 'Address', field: 'address' },
+          { title: 'Residence', field: 'residence' },
+          { title: 'Phone', field: 'phone_number' },
+          { title: 'Mail', field: 'mail' },
+          { title: 'SSN', field: 'ssn' },
+          { title: 'Job', field: 'job' },
+          { title: 'Company', field: 'company' },
+        ]}
+        editable={{
+          // adding new customer data
+          onRowAdd: newData =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                console.log(newData);
+                fetch(
+                  `/customers`,
+                   {
+                     method: 'POST',
+                     body: JSON.stringify(newData)
+                   }
+                );
+                window.location.reload(false);
 
-                  resolve();
-                }, 1000)
-              }),
-            onRowUpdate: (newData, oldData) =>
-              new Promise((resolve, reject) => {
-                setTimeout(() => {
-                  console.log(newData.id);
-                  console.log(newData);
-                  fetch(
-                    `/customers/${oldData.id}`,
-                     {
-                       method: 'PUT',
-                       body: JSON.stringify(newData)
-                     }
-                  );
-                  window.location.reload(false);
-                  resolve();
-                }, 1000)
-              }),
-            onRowDelete: oldData =>
-              new Promise((resolve, reject) => {
-                setTimeout(() => {
-                  console.log(oldData.id);
-                  console.log(`/customers/${oldData.id}`);
-                  fetch(`/customers/${oldData.id}`, {method: 'DELETE'});
-                  window.location.reload(false);
-                  resolve()
-                }, 1000)
-              }),
-          }}
-          options={{
-            search: true,
-            paging: true,
-            filtering: true,
-            exportButton: true,
-//            selection: true,
-            headerStyle: {backgroundColor: 'orange', fontSize: 16, fontWeight: 'bold', position: 'sticky'},
-          }}
-          icons={tableIcons}
-          style={{
-            marginLeft: '3vw',
-            marginRight: '3vw',
-            marginTop: '2vh',
-            marginBottom: '2vh',
-            backgroundColor: 'powderblue',
-            padding: 1,
-          }}
-        />
+                resolve();
+              }, 1000)
+            }),
+          // update the customers data
+          onRowUpdate: (newData, oldData) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                console.log(newData.id);
+                console.log(newData);
+                fetch(
+                  `/customers/${oldData.id}`,
+                   {
+                     method: 'PUT',
+                     body: JSON.stringify(newData)
+                   }
+                );
+                window.location.reload(false);
+                resolve();
+              }, 1000)
+            }),
+          // Delete customers data
+          onRowDelete: oldData =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                console.log(oldData.id);
+                console.log(`/customers/${oldData.id}`);
+                fetch(`/customers/${oldData.id}`, {method: 'DELETE'});
+                window.location.reload(false);
+                resolve()
+              }, 1000)
+            }),
+        }}
+        options={{
+          search: true,
+          paging: true,
+          filtering: true,
+          exportButton: true,
+          //  selection: true,
+          headerStyle: {backgroundColor: 'orange', fontSize: 16, fontWeight: 'bold', position: 'sticky'},
+        }}
+        icons={tableIcons}
+        style={{
+          marginLeft: '3vw',
+          marginRight: '3vw',
+          marginTop: '2vh',
+          marginBottom: '2vh',
+          backgroundColor: 'powderblue',
+          padding: 1,
+        }}
+      />
     </div>
   );
 }
